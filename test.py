@@ -8,7 +8,6 @@ Actual Response: {actual_response}
 (Answer with 'true' or 'false') Does the actual response match the expected response? 
 """
 
-
 def test_single_hop_questions():
     assert query_and_validate(
         question="what is the number of shares to be issued upon exercise of outstanding options warrants and rights is approved by security holders?",
@@ -42,6 +41,40 @@ def test_multiple_hop_questions():
     assert query_and_validate(
         question="what is the portion of total number of facilities located in the united states?",
         expected_response="48.8%",
+    )
+def test_single_hop_questions_neg():
+    assert query_and_validate(
+        question="what is the number of shares to be issued upon exercise of outstanding options warrants and rights is approved by security holders?",
+        expected_response="29569",
+    )
+
+def test_simple_add_questions_neg():
+    assert query_and_validate(
+        question="what was, then, in millions, the total tax of benefit realized from option exercises under all incentive plans for both years, 2013 and 2014 combined?",
+        expected_response="90",
+    )
+
+def test_simple_subtract_questions_neg():
+    assert query_and_validate(
+        question="what is the net difference in gains between the price of advance auto and the price of the s&p index in 2012?",
+        expected_response="55",
+    )
+
+def test_simple_multiply_questions_neg():
+    assert query_and_validate(
+        question="what is the total fair value of warrants and rights that are issued and approved by by security holders?",
+        expected_response="9999999",
+    )
+
+def test_simple_divide_questions_neg():
+    assert query_and_validate(
+        question="what portion of total number of securities issued is approved by security holders?",
+        expected_response="0.2",
+    )
+def test_multiple_hop_questions_neg():
+    assert query_and_validate(
+        question="what is the portion of total number of facilities located in the united states?",
+        expected_response="98.8%",
     )
 
 
